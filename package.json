@@ -1,0 +1,19 @@
+{
+  "name": "pxapi",
+  "version": "1.0.0",
+  "description": "Paxful API wrapper",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/msdjl/pxapi.git"
+  },
+  "keywords": ["paxful", "api"],
+  "author": "msdjl",
+  "license": "ISC",
+  "dependencies": {
+    "node-fetch": "^2.6.0"
+  }
+}
