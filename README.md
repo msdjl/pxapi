@@ -5,18 +5,18 @@ It doesn't describe any methods, it just magically turns methods calls like `px.
 
 ### Installation
 ```
-npm i pxapi
+npm i @msdjl/pxapi
 ```
 
 ### Usage
 ```javascript
-const px = new (require('pxapi'))({apiKey: 'apiKey', apiSecret: 'apiSecret'});
+const px = new (require('@msdjl/pxapi'))({apiKey: 'apiKey', apiSecret: 'apiSecret'});
 
 // Some endpoints do not require authentication. You can omit the "apiKey" and "apiSecret" params
-const pxNoAuth = new (require('pxapi'))();
+const pxNoAuth = new (require('@msdjl/pxapi'))();
 
 // You can change the API's base URL and append/override request headers if you want
-const pxSpecialDomainWithAuth = new (require('./index'))({
+const pxSpecialDomainWithAuth = new (require('@msdjl/pxapi'))({
     apiKey: 'apiKey',
     apiSecret: 'apiSecret',
     baseUrl: 'https://special.domain.com/api',

@@ -1,6 +1,6 @@
 {
-  "name": "pxapi",
-  "version": "1.0.0",
+  "name": "@msdjl/pxapi",
+  "version": "1.0.1",
   "description": "Paxful API wrapper",
   "main": "index.js",
   "scripts": {
