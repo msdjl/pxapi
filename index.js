@@ -40,10 +40,16 @@ class Paxful {
 			body: stringify(this.seal(payload)),
 			headers: this.requestHeaders
 		});
-		const json = await res.json();
+		let json;
+		try {
+			json = await res.json();
+		} catch (e) {
+			console.error(res.text());
+			throw e;
+		}
 		if (json.status !== 'success') {
 			console.error(util.inspect(json, false, null, true));
-			throw new Error('Request error');
+			throw new Error(`Response status: ${json.status}`);
 		}
 		return json.data;
 	}
