@@ -44,7 +44,7 @@ class Paxful {
 		try {
 			json = await res.json();
 		} catch (e) {
-			console.error(res.text());
+			console.error(await res.text());
 			throw e;
 		}
 		if (json.status !== 'success') {
