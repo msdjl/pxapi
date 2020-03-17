@@ -40,11 +40,18 @@ class Paxful {
 			body: stringify(this.seal(payload)),
 			headers: this.requestHeaders
 		});
-		let json;
+		let text, json;
 		try {
-			json = await res.json();
+			text = await res.text();
 		} catch (e) {
-			console.error(await res.text());
+			console.error('Unable to get the response text');
+			throw e;
+		}
+		try {
+			json = JSON.parse(text);
+		} catch (e) {
+			console.error('Unable to parse the response text to json. The text is:');
+			console.error(text);
 			throw e;
 		}
 		if (json.status !== 'success') {
