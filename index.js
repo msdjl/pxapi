@@ -4,6 +4,14 @@ const fetch = require('node-fetch');
 
 const stringify = obj => new URLSearchParams(obj).toString();
 
+const isString = value => typeof value === 'string' || value instanceof String;
+
+const encodeString = str => {
+	return encodeURIComponent(str).replace(/[!'()*]/g, c => {
+		return '%' + c.charCodeAt(0).toString(16);
+	});
+};
+
 class Paxful {
 	baseUrl = 'https://paxful.com/api';
 	requestHeaders = {
@@ -35,6 +43,12 @@ class Paxful {
 	}
 
 	async request(endpoint, payload = {}) {
+		const encodedString = JSON.parse(JSON.stringify(payload));
+		for (const key of Object.keys(encodedString)) {
+			if (isString(encodedString[key])) {
+				encodedString[key] = encodeString(encodedString[key]);
+			}
+		}
 		const res = await fetch(this.baseUrl + endpoint, {
 			method: 'post',
 			body: stringify(this.seal(payload)),
