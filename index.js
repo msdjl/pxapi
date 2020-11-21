@@ -35,7 +35,8 @@ class Paxful {
 			get: (target, name) => {
 				return name in target ? target[name] : new Proxy({}, {
 					get: (internalTarget, internalName) => {
-						return async (p = {}) => this.request(`/${name}/${internalName}`, p);
+						const url = `/${name}/${internalName}`.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
+						return async (p = {}) => this.request(url, p);
 					}
 				});
 			}
