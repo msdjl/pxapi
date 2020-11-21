@@ -29,5 +29,12 @@ const pxSpecialDomainWithAuth = new (require('@msdjl/pxapi'))({
 (async () => {
     console.log(await px.trade.completed({ page: 2 }));
     console.log(await pxNoAuth.currency.rates());
+
+    // Some endpoints may have hyphens in their addresses. In this case you can use camelCase to avoid square brackets
+    console.log(await px.wallet.listAddresses()); // /wallet/list-addresses
+    await px.tradeChat.post({ // /trade-chat/post
+        trade_hash: 'fxRRQJKmXyU',
+        message: 'my message'
+    });
 })();
 ```
